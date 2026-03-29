@@ -8,7 +8,10 @@ web_page = httpx.get("https://www.bpb.de/kurz-knapp/hintergrund-aktuell/574397/w
 #Creating a soup object to parse the HTML file
 soup = BeautifulSoup(web_page, 'html.parser')
 
-#Extracting the title of the web page
+#Extracting the title and text of the web page
 title = soup.title.string
-print("Title of the web page:", title)
+text = soup.get_text()
 
+
+with open(f"{title}.txt", "w", encoding="utf-8") as file:
+    file.write(text)
